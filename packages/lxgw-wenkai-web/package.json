@@ -1,0 +1,21 @@
+{
+  "name": "lxgw-wenkai-web",
+  "version": "1.0.0",
+  "description": "Another webfont package for the LXGW WenKai typeface",
+  "license": "MIT",
+  "author": "xiaozhu2007",
+  "main": "style.css",
+  "style": "style.css",
+  "files": [
+    "files",
+    "*.css",
+    "OFL.txt",
+    "VERSION"
+  ],
+  "keywords": [
+    "lxgw-wenkai",
+    "font",
+    "webfont",
+    "css"
+  ]
+}

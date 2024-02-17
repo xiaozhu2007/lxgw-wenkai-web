@@ -1,0 +1,38 @@
+name: Release fonts
+
+on:
+  push:
+    branches: main
+    paths:
+      - 'packages/**/VERSION'
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 2
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16.13.2'
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+        cache: pip
+    - name: Get changed files
+      id: changed_files
+      uses: tj-actions/changed-files@v2.0.0
+    - name: Install Python Deps
+      run: pip install -r requirements.txt
+    - name: Build Package lxgw-wenkai-lite-web
+      run: npm run build:package -- lxgw-wenkai-lite-web
+    - name: Build Package lxgw-wenkai-font
+      run: npm run build:package -- lxgw-wenkai-web
+    - name: Run Release Script
+      run: npm run release
+      env:
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
